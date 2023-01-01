@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Blog Post{% endblock %}
+{{ post.title }}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h2>Update Post....</h2>
+<br/>
+<div class="form-group">
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-secondary">Update</button>
+
+</form>
+</div>
+{% else %}
+you are not allowed here
+{% endif %}
+
+
+
+{% endblock %}
+

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if category_posts %}
+<h2>{{ cats }}</h2>
+
+
+<ul>
+{% for post in category_posts %}
+
+
+        <div  class="row g-0 bg-light position-relative">
+  <div class="col-md-6 mb-md-0 p-md-4">
+    <img src="{{ post.image.url }}" class="w-100" alt="...">
+  </div>
+  <div class="col-md-6 p-4 ps-md-0">
+    <h5 class="mt-0"><a class="link-dark" href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h5>
+    <p><a class="link-dark" href="{% url 'category' post.category|slugify %}">{{ post.category }}</a></p>
+      <small>Published Date: {{ post.post_date}}</small><br>
+
+    <p>{{ post.body|slice:":200"|safe }}....</p>
+  </div>
+</div>
+
+
+
+<!--<li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}-->
+<!--        </a>-->
+<!--        - {{ post.author }}-->
+<!--        - {{ post.post_date }}-->
+<!--&lt;!&ndash;        <small><a href="{% url 'update_post' post.pk %}">{Edit}</a></small> - &ndash;&gt;-->
+<!--&lt;!&ndash;        <small><a href="{% url 'delete_post' post.pk %}">{Delete}</a></small>&ndash;&gt;-->
+<!--        <br/>-->
+<!--        {{ post.body|slice:":200"|safe }}-->
+<!--    </li>-->
+{% endfor %}
+</ul>
+{% else %}
+<h2>sorry this page does not exist</h2>
+{% endif %}
+{% endblock %}
+
